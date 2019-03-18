@@ -9,6 +9,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\UploadedFile;
+use yii\data\ActiveDataProvider;
 
 /**
  * TasksController implements the CRUD actions for Tasks model.
@@ -34,8 +35,11 @@ class TasksController extends Controller {
      * @return mixed
      */
     public function actionIndex() {
+        $identity = Yii::$app->user->identity->username;
         $searchModel = new TasksSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider = new ActiveDataProvider([
+            'query' => Tasks::find()->where(['user' => $identity]),
+        ]);
 
         return $this->render('index', [
                     'searchModel' => $searchModel,
