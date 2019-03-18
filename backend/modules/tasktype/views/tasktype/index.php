@@ -5,6 +5,8 @@ use yii\grid\GridView;
 use yii\widgets\Pjax;
 use yii\bootstrap\Modal;
 use yii\helpers\Url;
+use yii\helpers\ArrayHelper;
+use common\models\Department;
 /* @var $this yii\web\View */
 /* @var $searchModel backend\modules\tasktype\controllers\TasktypeSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -89,6 +91,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'type_id',
             'type_name',
             'description',
+            'department',
 
             ['class' => 'yii\grid\ActionColumn',
                 'buttons' => [

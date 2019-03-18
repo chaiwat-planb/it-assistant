@@ -36,7 +36,8 @@ class Department extends \yii\db\ActiveRecord {
      */
     public function rules() {
         return [
-            [['name,location'], 'string', 'max' => 200],
+            [['name'], 'string', 'max' => 200],
+            [['location'], 'string', 'max' => 200],
         ];
     }
 

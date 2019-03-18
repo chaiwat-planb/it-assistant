@@ -1,6 +1,7 @@
 <?php
 
 namespace common\models;
+use common\models\Department;
 
 use Yii;
 
@@ -28,7 +29,7 @@ class Tasktype extends \yii\db\ActiveRecord
     {
         return [
             [['type_name', 'description'], 'required'],
-            [['type_name', 'description'], 'string', 'max' => 200],
+            [['type_name', 'description' ,'department'], 'string', 'max' => 200],
         ];
     }
 
@@ -41,6 +42,10 @@ class Tasktype extends \yii\db\ActiveRecord
             'type_id' => 'รหัสประเภท',
             'type_name' => 'ประเภทการแจ้งงาน',
             'description' => 'รายละเอียด',
+            'department' => 'แผนก',
         ];
+    }
+    public function getDepartment() {
+        return $this->hasOne(Department::className(), ['id' => 'name']);
     }
 }
